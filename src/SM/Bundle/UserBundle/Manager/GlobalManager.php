@@ -17,7 +17,7 @@ class GlobalManager
     protected $translator;
     protected $router;
     public $userRepo;
-    public $exchangeRepo;
+    public $cuaHangRepo;
     
     /**
      * Construct
@@ -35,7 +35,7 @@ class GlobalManager
         $this->translator = $translator;
         $this->router = $router;
         $this->userRepo = $em->getRepository('UserBundle:User');
-        $this->exchangeRepo = $em->getRepository('UserBundle:Exchange');
+        $this->cuaHangRepo = $em->getRepository('UserBundle:CuaHang');
 
     }
 

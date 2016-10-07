@@ -5,3 +5,7 @@ admin_homepage:
 _admin_secured:
     resource: "@AdminBundle/Controller/SecuredController.php"
     type:     annotation
+
+admin_cuahang:
+    path:     /cuahang
+    defaults: { _controller: AdminBundle:CuaHang:index }

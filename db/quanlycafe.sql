@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2016 at 01:30 PM
+-- Generation Time: Oct 07, 2016 at 03:32 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.5.38
 
@@ -36,6 +36,18 @@ CREATE TABLE `cuahang` (
   `Date_Creation` datetime NOT NULL,
   `Date_Modification` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `cuahang`
+--
+
+INSERT INTO `cuahang` (`Id_Cua_Hang`, `name`, `address`, `image`, `Note`, `Is_Active`, `Date_Creation`, `Date_Modification`) VALUES
+(1, 'Cafe Trung Nguyên', '201 Lý Thường Kiệt quận Tân Bình', '/uploads/cuahang/10475689_786989644678790_1501210837171904470_n_zps1d60fe12.jpg', NULL, 1, '2016-10-07 00:00:00', '2016-10-07'),
+(2, 'Cafe Buôn Mê Thuột', '201 CTM8 quận Tân Bình', '/uploads/cuahang/images(1).jpg', NULL, 1, '2016-10-07 00:00:00', '2016-10-07'),
+(3, 'Cafe Sách', '201 3/2 quận Tân Bình', '/uploads/cuahang/images(2).jpg', NULL, 1, '2016-10-07 00:00:00', '2016-10-07'),
+(4, 'Cafe Hoàng Tử', '201 Lê Thánh Tôn quận 1', '/uploads/cuahang/images.jpg', NULL, 1, '2016-10-07 00:00:00', '2016-10-07'),
+(5, 'Cafe Retro', '201 Thành Thái quận 10', '/uploads/cuahang/quan-cafe-1.jpg', NULL, 1, '2016-10-07 00:00:00', '2016-10-07'),
+(6, 'Cafe Victoria', '201 Bắc Hải quận 10', '/uploads/cuahang/thiet-ke-quan-cafe-1.jpg', NULL, 1, '2016-10-07 00:00:00', '2016-10-07');
 
 -- --------------------------------------------------------
 
@@ -87,7 +99,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cuahang`
 --
 ALTER TABLE `cuahang`
-  MODIFY `Id_Cua_Hang` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id_Cua_Hang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `user`
 --
