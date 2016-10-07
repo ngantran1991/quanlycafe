@@ -24,19 +24,19 @@ security:
             security: false
         
         demo_login:
-            pattern:  ^/login$
+            pattern:  ^/admin/login$
             security: false
 #            
 #        # secures part of the application
         demo_secured_area:
-            pattern:    ^/
+            pattern:    ^/admin
             provider: administrators
             form_login:
                 check_path: admin_security_check
                 login_path: admin_login
                 
                 always_use_default_target_path: true
-                default_target_path:            user_homepage
+                default_target_path:            admin_homepage
                 use_referer:                    true
                 
             logout:
