@@ -1,0 +1,7 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Default:index }
+    
+_admin_secured:
+    resource: "@AdminBundle/Controller/SecuredController.php"
+    type:     annotation

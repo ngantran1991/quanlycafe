@@ -1,6 +1,6 @@
 <?php
 
-namespace SM\Bundle\UserBundle\Controller;
+namespace SM\Bundle\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -8,13 +8,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
- * @Route("/user")
+ * @Route("/")
  */
 class SecuredController extends Controller
 {
 
     /**
-     * @Route("/login", name="user_login")
+     * @Route("/login", name="admin_login")
      * @Template()
      */
     public function loginAction(Request $request)
@@ -28,7 +28,7 @@ class SecuredController extends Controller
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render(
-            'UserBundle:Secured:login.html.twig',
+            'AdminBundle:Secured:login.html.twig',
             array(
                 // last username entered by the user
                 'last_username' => $lastUsername,
@@ -39,7 +39,7 @@ class SecuredController extends Controller
     }
 
     /**
-     * @Route("/login_check", name="user_security_check")
+     * @Route("/login_check", name="admin_security_check")
      */
     public function securityCheckAction()
     {
@@ -48,7 +48,7 @@ class SecuredController extends Controller
     }
 
     /**
-     * @Route("/logout", name="user_logout")
+     * @Route("/logout", name="admin_logout")
      */
     public function logoutAction()
     {

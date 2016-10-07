@@ -18,8 +18,6 @@ class GlobalManager
     protected $router;
     public $userRepo;
     public $exchangeRepo;
-    public $typeExchangeRepo;
-    public $typePriceRepo;
     
     /**
      * Construct
@@ -38,8 +36,6 @@ class GlobalManager
         $this->router = $router;
         $this->userRepo = $em->getRepository('UserBundle:User');
         $this->exchangeRepo = $em->getRepository('UserBundle:Exchange');
-        $this->typeExchangeRepo = $em->getRepository('UserBundle:TypeExchange');
-        $this->typePriceRepo = $em->getRepository('UserBundle:TypePrice');
 
     }
 

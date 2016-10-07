@@ -6,29 +6,43 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * TypeExchange
+ * Exchange
  *
- * @ORM\Table(name="Type_Exchange")
- * @ORM\Entity(repositoryClass="SM\Bundle\UserBundle\Repository\TypeExchangeRepository")
+ * @ORM\Table(name="CuaHang")
+ * @ORM\Entity(repositoryClass="SM\Bundle\UserBundle\Repository\CuaHangRepository")
  */
-class TypeExchange
+class CuaHang
 {
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="Id_Type_Exchange", type="integer", nullable=false)
+     * @ORM\Column(name="Id_Cua_Hang", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idTypeExchange;
-
+    private $idCuaHang;
+    
     /**
      * @var string
      *
-     * @ORM\Column(name="Name", type="string", length=100, nullable=true)
+     * @ORM\Column(name="name", type="string", nullable=false)
      */
     private $name;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", nullable=false)
+     */
+    private $address;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Note", type="string", length=300, nullable=true)
+     */
+    private $note;
 
     /**
      * @var integer
@@ -51,28 +65,28 @@ class TypeExchange
      */
     private $dateModification;
 
-    public function __construct()
-    {
-        $this->address = new ArrayCollection();
-
-    }
+//    public function __construct()
+//    {
+//        $this->address = new ArrayCollection();
+//
+//    }
 
     /**
-     * Get idTypeExchange
+     * Get idCuaHang
      *
      * @return integer
      */
-    public function getIdTypeExchange()
+    public function getIdCuaHang()
     {
-        return $this->idTypeExchange;
+        return $this->idCuaHang;
 
     }
-
+    
     /**
      * Set name
      *
      * @param string $name
-     * @return TypeExchange
+     * @return CuaHang
      */
     public function setName($name)
     {
@@ -92,12 +106,62 @@ class TypeExchange
         return $this->name;
 
     }
+    
+    /**
+     * Set address
+     *
+     * @param string $address
+     * @return CuaHang
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+
+    }
+
+    /**
+     * Get addess
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+
+    }
+    
+    /**
+     * Set note
+     *
+     * @param string $note
+     * @return Exchange
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+
+    }
+
+    /**
+     * Get note
+     *
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->note;
+
+    }
 
     /**
      * Set isActive
      *
      * @param string $isActive
-     * @return TypeExchange
+     * @return Exchange
      */
     public function setIsActive($isActive)
     {
@@ -122,7 +186,7 @@ class TypeExchange
      * Set dateCreation
      *
      * @param \DateTime $dateCreation
-     * @return TypeExchange
+     * @return Exchange
      */
     public function setDateCreation($dateCreation)
     {
@@ -147,7 +211,7 @@ class TypeExchange
      * Set dateModification
      *
      * @param \DateTime $dateModification
-     * @return TypeExchange
+     * @return Exchange
      */
     public function setDateModification($dateModification)
     {
@@ -170,6 +234,7 @@ class TypeExchange
 
     public function getId()
     {
-        return $this->getId();
+        return $this->getIdCuaHang();
     }
+    
 }
