@@ -5,3 +5,7 @@ user_homepage:
 _user_secured:
     resource: "@UserBundle/Controller/SecuredController.php"
     type:     annotation
+    
+user_order:
+    path:     /order
+    defaults: { _controller: UserBundle:Order:index }
