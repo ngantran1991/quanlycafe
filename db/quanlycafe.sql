@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2016 at 08:52 AM
+-- Generation Time: Oct 07, 2016 at 01:30 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.5.38
 
@@ -30,6 +30,7 @@ CREATE TABLE `cuahang` (
   `Id_Cua_Hang` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `Note` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Is_Active` int(11) NOT NULL,
   `Date_Creation` datetime NOT NULL,

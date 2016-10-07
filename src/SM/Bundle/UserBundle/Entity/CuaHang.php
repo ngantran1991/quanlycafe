@@ -40,6 +40,13 @@ class CuaHang
     /**
      * @var string
      *
+     * @ORM\Column(name="image", type="string", nullable=false)
+     */
+    private $image;
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="Note", type="string", length=300, nullable=true)
      */
     private $note;
@@ -129,6 +136,31 @@ class CuaHang
     public function getAddress()
     {
         return $this->address;
+
+    }
+    
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return CuaHang
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
 
     }
     
