@@ -1,0 +1,11 @@
+services:
+#    user.example:
+#        class: UserBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+    user.global.manager:
+        class: SM\Bundle\UserBundle\Manager\GlobalManager
+        arguments: ['@doctrine.orm.entity_manager', '@service_container', '@translator', '@router']
+        
+    user.exchange.manager:
+        class: SM\Bundle\UserBundle\Manager\ExchangeManager
+        arguments: ['@doctrine.orm.entity_manager', '@service_container', '@translator', '@router']

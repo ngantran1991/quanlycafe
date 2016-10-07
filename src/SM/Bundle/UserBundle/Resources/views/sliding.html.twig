@@ -1,0 +1,66 @@
+{# default Sliding pagination control implementation #}
+<div ><a href="#"></a></li></div>
+    {% if pageCount > 1 %}
+<div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
+    <ul class="pagination">
+        {% if first is defined and current != first %}
+            <li class="paginate_button previous " aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                {% set pre = previous - 5 %}
+                {% if pre > first %}
+                    <a href="{{ path(route, query|merge({(pageParameterName): pre})) }}">{{'admin.paging.previous'|trans({}, 'SMAdminBundle')}}</a>
+                {% else %}
+                    <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">{{'admin.paging.previous'|trans({}, 'SMAdminBundle')}}</a>
+                {% endif %}
+            </li>
+        {% else %}
+            <li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                <a href="javascript:">{{'admin.paging.previous'|trans({}, 'SMAdminBundle')}}</a>
+            </li>
+        {% endif %}
+
+        {#{% if previous is defined and previous != first%}
+            <li class="paginate_button previous " aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">Previous</a>
+            </li>
+        {% endif %}#}
+
+        {% for page in pagesInRange %}
+            {% if page != current %}
+                <li class="paginate_button" aria-controls="dataTables-example" tabindex="0">
+                    <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+                </li>
+            {% else %}
+                <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
+                    <a href="javascript:">
+                        {{ page }}
+                    </a>
+                </li>
+            {% endif %}
+
+        {% endfor %}
+
+        {% if next is defined %}
+            <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
+                {% set nex = pageRange + next %}
+                {% if nex <= last %}
+                    <a href="{{ path(route, query|merge({(pageParameterName): nex})) }}">{{'admin.paging.next'|trans({}, 'SMAdminBundle')}}</a>
+                {% else %}
+                    <span class="last">
+                        <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">{{'admin.paging.next'|trans({}, 'SMAdminBundle')}}</a>
+                    </span>
+                {% endif %}
+            </li>
+        {% else %}
+            <li class="paginate_button next disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
+                <a href="javascript:">{{'admin.paging.next'|trans({}, 'SMAdminBundle')}}</a>
+            </li>
+        {% endif %}
+
+        {#    {% if last is defined and current != last %}
+                <span class="last">
+                    <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">&gt;&gt;</a>
+                </span>
+            {% endif %}#}
+    </ul>
+</div>
+{% endif %}

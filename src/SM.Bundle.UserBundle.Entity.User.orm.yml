@@ -1,0 +1,82 @@
+SM\Bundle\UserBundle\Entity\User:
+    type: entity
+    table: User
+    repositoryClass: SM\Bundle\UserBundle\Repository\UserRepository
+    id:
+        idUser:
+            type: integer
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            column: Id_User
+            generator:
+                strategy: IDENTITY
+    fields:
+        firstname:
+            type: string
+            scale: 0
+            length: 100
+            unique: false
+            nullable: true
+            precision: 0
+            column: Firstname
+        lastname:
+            type: string
+            scale: 0
+            length: 100
+            unique: false
+            nullable: true
+            precision: 0
+            column: Lastname
+        username:
+            type: string
+            scale: 0
+            length: 100
+            unique: false
+            nullable: true
+            precision: 0
+            column: Username
+        password:
+            type: string
+            scale: 0
+            length: 100
+            unique: false
+            nullable: true
+            precision: 0
+            column: Password
+        email:
+            type: string
+            scale: 0
+            length: 100
+            unique: false
+            nullable: true
+            precision: 0
+            column: Email
+        isActive:
+            type: integer
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            column: Is_Active
+        dateCreation:
+            type: datetime
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            column: Date_Creation
+        dateModification:
+            type: date
+            scale: 0
+            length: null
+            unique: false
+            nullable: true
+            precision: 0
+            column: Date_Modification
+    lifecycleCallbacks: {  }

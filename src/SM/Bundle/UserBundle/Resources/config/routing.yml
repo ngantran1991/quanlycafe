@@ -1,0 +1,19 @@
+user_homepage:
+    path:     /
+    defaults: { _controller: UserBundle:Default:index }
+    
+get_data_price_a_day_from_day:
+    path:     /ajax/pageDay/price/all
+    defaults: { _controller: UserBundle:DayPrice:ajaxAllPriceDetail }
+
+price_a_day:
+    path:     /day/price
+    defaults: { _controller: UserBundle:DayPrice:index }
+    
+ajax_price_a_day:
+    path:     /ajax/day/price
+    defaults: { _controller: UserBundle:DayPrice:ajaxIndex }
+    
+_demo_secured:
+    resource: "@UserBundle/Controller/SecuredController.php"
+    type:     annotation
