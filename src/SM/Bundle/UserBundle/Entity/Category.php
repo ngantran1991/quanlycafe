@@ -8,28 +8,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Exchange
  *
- * @ORM\Table(name="ThucDon", indexes={@ORM\Index(name="Id_Category", columns={"Id_Category"})})
- * @ORM\Entity(repositoryClass="SM\Bundle\UserBundle\Repository\ThucDonRepository")
+ * @ORM\Table(name="Category")
+ * @ORM\Entity(repositoryClass="SM\Bundle\UserBundle\Repository\CategoryRepository")
  */
-class ThucDon
+class Category
 {
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="Id_Thuc_Don", type="integer", nullable=false)
+     * @ORM\Column(name="Id_Category", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idThucDon;
-    
-    /**
-     * @var \Category
-     *
-     * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Id_Category", referencedColumnName="Id_Category")
-     * })
      */
     private $idCategory;
     
@@ -43,31 +33,10 @@ class ThucDon
     /**
      * @var integer
      *
-     * @ORM\Column(name="Gia", type="integer", nullable=false)
+     * @ORM\Column(name="Category_pid", type="integer", nullable=false)
      */
-    private $gia;
+    private $categoryPid;
     
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="detail", type="string", nullable=false)
-     */
-    private $detail;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="image", type="string", nullable=false)
-     */
-    private $image;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Note", type="string", length=300, nullable=true)
-     */
-    private $note;
-
     /**
      * @var integer
      *
@@ -96,34 +65,9 @@ class ThucDon
 //    }
 
     /**
-     * Get idThucDon
-     *
-     * @return integer
-     */
-    public function getIdThucDon()
-    {
-        return $this->idThucDon;
-
-    }
-    
-    /**
-     * Set idCategory
-     *
-     * @param \SM\Bundle\UserBundle\Entity\Category $idCategory
-     * @return Exchange
-     */
-    public function setIdCategory(\SM\Bundle\UserBundle\Entity\Category $idCategory = null)
-    {
-        $this->idCategory = $idCategory;
-
-        return $this;
-
-    }
-
-    /**
      * Get idCategory
      *
-     * @return \SM\Bundle\UserBundle\Entity\Category
+     * @return integer
      */
     public function getIdCategory()
     {
@@ -157,105 +101,30 @@ class ThucDon
     }
     
     /**
-     * Set gia
+     * Set CategoryPid
      *
-     * @param string $gia
+     * @param string $categoryPid
      * @return Exchange
      */
-    public function setGia($gia)
+    public function setCategoryPid($categoryPid)
     {
-        $this->gia = $gia;
+        $this->categoryPid = $categoryPid;
 
         return $this;
 
     }
 
     /**
-     * Get gia
+     * Get categoryPid
      *
      * @return string
      */
-    public function getGia()
+    public function getCategoryPid()
     {
-        return $this->gia;
+        return $this->categoryPid;
 
     }
     
-    /**
-     * Set detail
-     *
-     * @param string $detail
-     * @return CuaHang
-     */
-    public function setDetail($detail)
-    {
-        $this->detail = $detail;
-
-        return $this;
-
-    }
-
-    /**
-     * Get detail
-     *
-     * @return string
-     */
-    public function getDetail()
-    {
-        return $this->detail;
-
-    }
-    
-    /**
-     * Set image
-     *
-     * @param string $image
-     * @return CuaHang
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-
-    }
-
-    /**
-     * Get image
-     *
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
-
-    }
-    
-    /**
-     * Set note
-     *
-     * @param string $note
-     * @return Exchange
-     */
-    public function setNote($note)
-    {
-        $this->note = $note;
-
-        return $this;
-
-    }
-
-    /**
-     * Get note
-     *
-     * @return string
-     */
-    public function getNote()
-    {
-        return $this->note;
-
-    }
-
     /**
      * Set isActive
      *
@@ -333,7 +202,7 @@ class ThucDon
 
     public function getId()
     {
-        return $this->getIdThucDon();
+        return $this->getIdCategory();
     }
     
 }

@@ -19,6 +19,7 @@ class GlobalManager
     public $userRepo;
     public $cuaHangRepo;
     public $thucDonRepo;
+    public $categoryRepo;
     
     /**
      * Construct
@@ -38,6 +39,7 @@ class GlobalManager
         $this->userRepo = $em->getRepository('UserBundle:User');
         $this->cuaHangRepo = $em->getRepository('UserBundle:CuaHang');
         $this->thucDonRepo = $em->getRepository('UserBundle:ThucDon');
+        $this->categoryRepo = $em->getRepository('UserBundle:Category');
 
     }
 

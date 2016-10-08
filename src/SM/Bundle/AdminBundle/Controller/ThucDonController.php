@@ -22,6 +22,6 @@ class ThucDonController extends SMController
         return $this->render('AdminBundle:ThucDon:index.html.twig', array(
             'entities' => $pagination,
             'numberRecord' => 10,
-            'page' => $page,));
+            'page' => $currentPage,));
     }
 }
