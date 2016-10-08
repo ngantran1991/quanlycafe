@@ -9,3 +9,7 @@ _admin_secured:
 admin_cuahang:
     path:     /cuahang
     defaults: { _controller: AdminBundle:CuaHang:index }
+    
+admin_thucdon:
+    path:     /thucdon
+    defaults: { _controller: AdminBundle:ThucDon:index }

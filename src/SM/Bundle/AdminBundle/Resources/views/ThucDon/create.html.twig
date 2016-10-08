@@ -1,0 +1,108 @@
+{% extends 'SMAdminBundle::layout.html.twig' %}
+{% block header %}{{ 'admin.CategorieMetier.titleCreate'|trans({}, 'SMCategorieBundle') }}{%endblock header%}
+{% block body -%}
+    <div class="row">
+        <form role="form" id="form" action="{{ path('categorie_create') }}" {{ form_enctype(form)}} enctype="multipart/form-data" method="post">
+            <div class="col-md-8 col-md-offset-1">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-user"></i> {{'admin.categorieMetier.panelCreate'|trans({}, 'SMCategorieBundle')}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="dataTable_wrapper">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tbody>
+                                    {{form_errors(form)}}
+                                    <tr>
+                                        <td>{{form_label(form.libelleFr, form.libelleFr.vars.label|trans({}, 'SMCategorieBundle'))}}</td>
+                                        <td>
+                                            {{form_widget(form.libelleFr)}}
+                                            {{ form_errors(form.libelleFr) }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{form_label(form.libelleEn, form.libelleEn.vars.label|trans({}, 'SMCategorieBundle'))}}</td>
+                                        <td>
+                                            {{form_widget(form.libelleEn)}}
+                                            {{form_errors(form.libelleEn)}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{form_label(form.visibleFooter, form.visibleFooter.vars.label|trans({}, 'SMCategorieBundle'))}}</td>
+                                        <td>
+                                            {{form_widget(form.visibleFooter)}}
+                                            {{form_errors(form.visibleFooter)}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{form_label(form.idEtatCategorie, form.idEtatCategorie.vars.label|trans({}, 'SMCategorieBundle'))}}</td>
+                                        <td>
+                                            {{form_widget(form.idEtatCategorie)}}
+                                            {{form_errors(form.idEtatCategorie)}}
+                                        </td>
+                                    </tr>
+                                    {% for i in range(low=0, high=2, step=1) %}
+                                        {% if i == 0 %}
+                                            {% set labelShowImg = "categorie.metier.Fichier" | trans({}, "SMCategorieBundle") %}
+                                        {% elseif i == 1 %}
+                                            {% set labelShowImg = "categorie.metier.Fichier_Hover" | trans({}, "SMCategorieBundle") %}
+                                        {% else %}
+                                            {% set labelShowImg = "categorie.metier.Fichier_Hover2" | trans({}, "SMCategorieBundle") %}
+                                        {% endif %}
+
+                                        {% set type = "item.label.max_size_pdf" | trans({}, "SMCategorieBundle") %}
+                                        <tr>
+                                            <td>
+                                                <label>{{ labelShowImg }}</label>
+                                            </td>
+                                            <td>
+                                                {{ form_widget(formUpload.imageUtils[i].file) }}
+                                                <span  class="span-a0302">{{ type }}</span>
+                                                {% if formUpload.imageUtils[i].file.vars.errors %}
+                                                    <br>
+                                                {% else %}
+                                                {% endif %}
+                                                {{ form_errors(formUpload.imageUtils[i].file) }}
+                                                <br>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    {#<tr>
+                                        <td>{{form_label(form.idFichier, form.idFichier.vars.label|trans({}, 'SMCategorieBundle'))}}</td>
+                                        <td>
+                                            {{form_widget(form.idFichier)}}
+                                            {{form_errors(form.idFichier)}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{form_label(form.idFichierHover, form.idFichierHover.vars.label|trans({}, 'SMCategorieBundle'))}}</td>
+                                        <td>
+                                            {{form_widget(form.idFichierHover)}}
+                                            {{form_errors(form.idFichierHover)}}
+                                        </td>
+                                    </tr>#}
+                                    <tr>
+                                        <td>{{form_label(form.colorCode, form.colorCode.vars.label|trans({}, 'SMCategorieBundle'))}}</td>
+                                        <td>
+                                            {{form_widget(form.colorCode)}}</br>
+                                            {{form_errors(form.colorCode)}}
+                                        </td>
+                                    </tr>
+                                    {{ form_rest(form) }}
+                                    {{ form_rest(formUpload) }}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button type="submit" class="btn btn-default">Submit Button</button>
+                        <button type="reset" class="btn btn-default">Reset Button</button>
+                        <a href="{{ path('sm_menu_categorie_metier') }}" class="btn btn-warning">
+                            {{'admin.button.backtolist'|trans({}, 'SMUserBundle')}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+    </div>
+{% endblock %}
