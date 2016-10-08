@@ -263,8 +263,58 @@ jQuery(function($){
 
    jQuery(window).load(function() { // makes sure the whole site is loaded      
       jQuery('#aa-preloader-area').delay(300).fadeOut('slow'); // will fade out      
-    })
+    });
    
-  
+   // TRUNG CUSTOM
+   $(".input_no_order").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+             // Allow: Ctrl+A
+             (e.keyCode == 65 && e.ctrlKey === true) ||
+             // Allow: Ctrl+C
+             (e.keyCode == 67 && e.ctrlKey === true) ||
+             // Allow: Ctrl+X
+             (e.keyCode == 88 && e.ctrlKey === true) ||
+             // Allow: home, end, left, right
+             (e.keyCode >= 35 && e.keyCode <= 39)) {
+                 // let it happen, don't do anything
+               return;
+             }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+          e.preventDefault();
+        }
+      });
+
+   jQuery(".icon-plus").click(function(){
+    var no_order_id = $(this).attr("data-order-id");
+    var no_order = $("#input_no_order_" + no_order_id).val();
+    no_order = parseInt(no_order);
+    if(no_order >= 0){
+      no_order = parseInt(no_order) + 1;
+      $("#input_no_order_" + no_order_id).val(no_order);
+    }
+  });
+
+   jQuery(".icon-minus").click(function(){
+    var no_order_id = $(this).attr("data-order-id");
+    var no_order = $("#input_no_order_" + no_order_id).val();
+    no_order = parseInt(no_order);
+    if(no_order > 0){
+      no_order = parseInt(no_order) - 1;
+      $("#input_no_order_" + no_order_id).val(no_order);
+    }
+  });
+
+   jQuery("#save_order").on("click",function(){
+    $(".input_no_order").each(function(){
+      if($(this).val() == 0) {
+        var id_no_order = parseInt($(this).attr("data-val"));
+        $("#id_no_order_"+ id_no_order).attr("disabled","true");
+        $(this).attr("disabled","true");
+      }
+      $("#order_form").submit();
+    });
+   });
 });
 

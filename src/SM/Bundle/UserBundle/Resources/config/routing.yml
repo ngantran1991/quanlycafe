@@ -9,3 +9,7 @@ _user_secured:
 user_order:
     path:     /order
     defaults: { _controller: UserBundle:Order:index }
+
+user_saveroderform:
+    path:     /saveformorder
+    defaults: { _controller: UserBundle:Order:saveformorder }

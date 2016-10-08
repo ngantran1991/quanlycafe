@@ -4,6 +4,7 @@ namespace SM\Bundle\UserBundle\Controller;
 
 use SM\Bundle\UserBundle\Plugins\Controller\SMController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class OrderController extends SMController
 {
@@ -22,5 +23,14 @@ class OrderController extends SMController
 		$data = array('listCategory' => $listCategory,
 			'listThucDonByCategory'=> $listThucDonByCategory);
 		return $this->render('UserBundle:Order:index.html.twig',$data);
+	}
+	public function saveformorderAction(){
+		if(isset($_POST)){
+			$data = $_POST;
+			var_dump("<pre>",$data);
+			$response = new Response('Contact us');
+			return $response;
+
+		}
 	}
 }
