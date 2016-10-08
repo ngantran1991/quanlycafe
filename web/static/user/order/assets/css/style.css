@@ -553,7 +553,7 @@ img {
   display: inline;
   float: left;
   width: 100%;
-  padding: 100px 0;
+  padding: 10px 0;
 }
 #mu-restaurant-menu .mu-restaurant-menu-area {
   display: inline;
@@ -565,6 +565,10 @@ img {
   float: left;
   margin-top: 30px;
   width: 100%;
+}
+.mu-restaurant-menu-content
+{
+  margin-top: 0px !important;
 }
 #mu-restaurant-menu .mu-restaurant-menu-area .mu-restaurant-menu-content .mu-restaurant-menu {
   display: inline-block;
