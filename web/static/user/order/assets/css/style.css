@@ -635,6 +635,10 @@ img {
   font-size: 20px;
   margin-bottom: 10px;
 }
+.media-heading-small{
+  font-size: 15px !important;
+  margin-bottom: 10px;
+}
 #mu-restaurant-menu .mu-restaurant-menu-area .mu-restaurant-menu-content .mu-tab-content-area .mu-menu-item-nav li .media .media-body .media-heading a {
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
@@ -647,6 +651,10 @@ img {
   font-weight: bold;
   letter-spacing: 1.5px;
   line-height: 20px;
+}
+.mu-menu-price-small{
+  font-size: 14px !important;
+  line-height: 14px !important;  
 }
 #mu-restaurant-menu .mu-restaurant-menu-area .mu-restaurant-menu-content .mu-tab-content-area .mu-menu-item-nav li .media .media-body p {
   margin-top: 10px;

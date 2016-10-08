@@ -14,4 +14,13 @@ use Doctrine\ORM\Query;
  */
 class ThucDonRepository extends BaseRepository
 {
+	public function getThucDonByCategory($idCategory = 1)
+	{
+		$result = $this->createQueryBuilder('td')
+		->select('td')
+		->where('td.idCategory = :idCategory')
+		->setParameter('idCategory', $idCategory)
+		->getQuery();
+		return $result->getArrayResult();
+	}
 }
