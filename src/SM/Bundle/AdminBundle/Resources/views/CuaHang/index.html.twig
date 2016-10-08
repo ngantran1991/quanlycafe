@@ -22,7 +22,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-10 col-sm-10 col-lg-10">
-                                {{ cuaHang.name }}
+                                    <a href="{{ path('admin_cuahang_detail', { 'id': cuaHang.idCuaHang }) }}">{{ cuaHang.name }}</a>
                                 </div>
                                 <div class="col-xs-1 col-sm-1 col-lg-1">
                                     <a href="#">
@@ -39,7 +39,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="text-center">
-                                <img src="{{ asset(cuaHang.image) }}" class="img-thumbnail"/>
+                                <a href="{{ path('admin_cuahang_detail', { 'id': cuaHang.idCuaHang }) }}"><img src="{{ asset(cuaHang.image) }}" class="img-thumbnail"/></a>
                             </div><br/>
                             <p class="text-left">Địa chỉ: {{ cuaHang.address }}</p>
                             <!-- /.table-responsive -->

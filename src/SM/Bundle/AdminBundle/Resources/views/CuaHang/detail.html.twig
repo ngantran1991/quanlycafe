@@ -1,0 +1,89 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+{% block header %}
+    Cửa Hàng
+{% endblock header %}
+{% block body %}
+<div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Thực Đơn Của Cửa Hàng</h1>
+                </div>
+                <div>
+                    <button type="button" id='add-button-thucdon' class="btn btn-success">Thêm Thức Uống</button>
+                </div>
+                <br/>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Cửa Hàng: {{ cuaHang.name }}
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <form action='{{ path('admin_cuahang_detail') }}' method="post">
+                            <div class="table-responsive">
+                                <input type='hidden' name='id' value='{{ id }}'/>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tên Thức Uống</th>
+                                            <th>Giá</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody id="thuc-uong">
+                                        {% set num = 0 %}
+                                        {% for thucDonCuaHang in listThucDonCuaHang %}
+                                        <tr>
+                                            {% set num = num + 1 %}
+                                            <td>{{ num }}</td>
+                                            <td>{{ thucDonCuaHang.idThucDon.name }}</td>
+                                            <td>{{ thucDonCuaHang.idThucDon.gia }}</td>
+                                            <td>
+                                                <a href="#">
+                                                    <span>X</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                            <div class="col-lg-offset-10">
+                                <button type="submit" id='add-button-thucdon' class="btn btn-success">Save</button>
+                            </div>
+                            </form>
+                            <!-- /.table-responsive -->
+                        </div>
+                                    
+                        <!-- /.panel-body -->
+                    </div>
+            </div>
+            <!-- /.row -->
+        </div>
+<script>
+$( document ).ready(function() {
+    $('#add-button-thucdon').click(function(){
+        $('#thuc-uong').append("<tr>\n\
+                                    <td></td>\n\
+                                    <td><select name='thucdon[]' class='form-control'>\n\
+                                            \n\{% for thucDon in listThucDon %}
+                                                    <option value='{{ thucDon.idThucDon }}'>{{ thucDon.name }}</option>\n\
+\n\{% endfor %}
+                                        </select>\n\
+                                    </td>\n\
+                                    <td></td>\n\
+                                    <td>@mdo</td>\n\
+                                </tr>");
+    });            
+});
+
+</script>
+{% endblock body %}
