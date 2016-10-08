@@ -7,14 +7,14 @@
             <li class="paginate_button previous " aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
                 {% set pre = previous - 5 %}
                 {% if pre > first %}
-                    <a href="{{ path(route, query|merge({(pageParameterName): pre})) }}">{{'admin.paging.previous'|trans({}, 'SMAdminBundle')}}</a>
+                    <a href="{{ path(route, query|merge({(pageParameterName): pre})) }}">{{'Previous'|trans({}, 'SMAdminBundle')}}</a>
                 {% else %}
-                    <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">{{'admin.paging.previous'|trans({}, 'SMAdminBundle')}}</a>
+                    <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">{{'Previous'|trans({}, 'SMAdminBundle')}}</a>
                 {% endif %}
             </li>
         {% else %}
             <li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
-                <a href="javascript:">{{'admin.paging.previous'|trans({}, 'SMAdminBundle')}}</a>
+                <a href="javascript:">{{'Previous'|trans({}, 'SMAdminBundle')}}</a>
             </li>
         {% endif %}
 
@@ -43,16 +43,16 @@
             <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
                 {% set nex = pageRange + next %}
                 {% if nex <= last %}
-                    <a href="{{ path(route, query|merge({(pageParameterName): nex})) }}">{{'admin.paging.next'|trans({}, 'SMAdminBundle')}}</a>
+                    <a href="{{ path(route, query|merge({(pageParameterName): nex})) }}">{{'Next'|trans({}, 'SMAdminBundle')}}</a>
                 {% else %}
                     <span class="last">
-                        <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">{{'admin.paging.next'|trans({}, 'SMAdminBundle')}}</a>
+                        <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">{{'Next'|trans({}, 'SMAdminBundle')}}</a>
                     </span>
                 {% endif %}
             </li>
         {% else %}
             <li class="paginate_button next disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
-                <a href="javascript:">{{'admin.paging.next'|trans({}, 'SMAdminBundle')}}</a>
+                <a href="javascript:">{{'Next'|trans({}, 'SMAdminBundle')}}</a>
             </li>
         {% endif %}
 

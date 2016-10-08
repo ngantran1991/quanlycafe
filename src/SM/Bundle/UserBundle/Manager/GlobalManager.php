@@ -18,6 +18,7 @@ class GlobalManager
     protected $router;
     public $userRepo;
     public $cuaHangRepo;
+    public $thucDonRepo;
     
     /**
      * Construct
@@ -36,6 +37,7 @@ class GlobalManager
         $this->router = $router;
         $this->userRepo = $em->getRepository('UserBundle:User');
         $this->cuaHangRepo = $em->getRepository('UserBundle:CuaHang');
+        $this->thucDonRepo = $em->getRepository('UserBundle:ThucDon');
 
     }
 
