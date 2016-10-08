@@ -41,77 +41,87 @@
     <body>  
       <!-- Start Restaurant Menu -->
       <section id="mu-restaurant-menu">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="mu-restaurant-menu-area">
-                <div class="mu-title">
-                  <span class="mu-subtitle">Discover</span>
-                  <h2>OUR MENU</h2>
-                  <i class="fa fa-spoon"></i>              
-                  <span class="mu-title-bar"></span>
-                </div>
-                <div class="mu-restaurant-menu-content">
-                  <ul class="nav nav-tabs mu-restaurant-menu">
-                    {% set i = 0 %}
-                    {% for cg in listCategory if cg.isActive %}
-                    {% set class = "" %}
-                    {% if i == 0  %}
-                    {% set class = "active" %}
-                    {% endif %}
-                    <li class="{{class}}">
-                      <a href="#{{cg.name}}" data-toggle="tab">{{cg.name}}</a>
-                    </li>
+        <form action="saveformorder" name="order_form" id="order_form" method="post">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mu-restaurant-menu-area">
+                  <div class="mu-title">
+                    <span class="mu-subtitle">Discover</span>
+                    <h2>OUR MENU</h2>
+                    <i class="fa fa-spoon"></i>              
+                    <span class="mu-title-bar"></span>
+                  </div>
+                  <div class="mu-restaurant-menu-content">
+                    <ul class="nav nav-tabs mu-restaurant-menu">
+                      {% set i = 0 %}
+                      {% for cg in listCategory if cg.isActive %}
+                      {% set class = "" %}
+                      {% if i == 0  %}
+                      {% set class = "active" %}
+                      {% endif %}
+                      <li class="{{class}}">
+                        <a href="#{{cg.name}}" data-toggle="tab">{{cg.name}}</a>
+                      </li>
 
-                    {% set i = i + 1 %}
-                    {% endfor %}
-                  </ul>
-
-                  <!-- Tab panes -->
-                  <div class="tab-content">
-                    {% set j = 0 %}
-                    {% for listproduct in listThucDonByCategory %}
-                    {% set class = "" %}
-                    {% if j == 0  %}
-                    {% set class = "active" %}
-                    {% endif %}
-                    <div class="tab-pane fade in {{class}}" id="{{listCategory[j].name}}">
-                      <div class="mu-tab-content-area">
-                        <div class="row">
-                          {% for product in listproduct %}
-                          <div class="col-md-3">
-                            <div class="mu-tab-content-left">
-                              <ul class="mu-menu-item-nav">
-                                <li>
-                                  <div class="media">
-                                    <div class="media-left">
-                                      <a href="#">
-                                        <img class="media-object" src="{{asset('static/user/order/assets/img/menu/item-1.jpg')}}" alt="img">
-                                      </a>
+                      {% set i = i + 1 %}
+                      {% endfor %}
+                      <li class="save_order">
+                      <a id="save_order">Save here</a>
+                      </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                      {% set j = 0 %}
+                      {% for listproduct in listThucDonByCategory %}
+                      {% set class = "" %}
+                      {% if j == 0  %}
+                      {% set class = "active" %}
+                      {% endif %}
+                      <div class="tab-pane fade in {{class}}" id="{{listCategory[j].name}}">
+                        <div class="mu-tab-content-area">
+                          <div class="row">
+                            {% for product in listproduct %}
+                            <div class="col-md-3">
+                              <div class="mu-tab-content-left">
+                                <ul class="mu-menu-item-nav">
+                                  <li>
+                                    <div class="media">
+                                      <div class="media-left">
+                                        <a href="#">
+                                          <img class="media-object" src="{{asset('static/user/order/assets/img/menu/item-1.jpg')}}" alt="img">
+                                        </a>
+                                      </div>
+                                      <div class="media-body">
+                                        <h4 class="media-heading media-heading-small"><a href="#">{{product.name}}</a></h4>
+                                        <span class="mu-menu-price mu-menu-price-small">{{product.gia}}</span>
+                                        <div class="div_no_order">
+                                          <input type="hidden" name="id_no_order[]" id="id_no_order_{{product.idThucDon}}" value="{{product.idThucDon}}">
+                                          <input type="text" name="input_no_order[]" data-val='{{product.idThucDon}}' id="input_no_order_{{product.idThucDon}}" class="input_no_order" value="0" min='0'>
+                                        </div>
+                                      </div>
+                                      <div class="no_order">
+                                        <i class="fa fa-plus icon-plus" data-order-id='{{product.idThucDon}}' style="font-size:24px"></i>
+                                        <i class="fa fa-minus icon-minus" data-order-id='{{product.idThucDon}}' style="font-size:24px"></i>
+                                      </div>
                                     </div>
-                                    <div class="media-body">
-                                      <h4 class="media-heading media-heading-small"><a href="#">{{product.name}}</a></h4>
-                                      <span class="mu-menu-price mu-menu-price-small">{{product.gia}}</span>
-                                      <p></p>
-                                    </div>
-                                  </div>
-                                </li>
-
-                              </ul>   
+                                  </li>
+                                </ul>   
+                              </div>
                             </div>
+                            {% endfor %}
                           </div>
-                          {% endfor %}
                         </div>
                       </div>
+                      {% set j = j + 1 %}
+                      {% endfor %}
                     </div>
-                    {% set j = j + 1 %}
-                    {% endfor %}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </section>
       <!-- End Restaurant Menu -->
       <!-- jQuery library -->

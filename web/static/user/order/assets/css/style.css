@@ -606,7 +606,7 @@ img {
 #mu-restaurant-menu .mu-restaurant-menu-area .mu-restaurant-menu-content .mu-tab-content-area .mu-tab-content-left {
   display: inline;
   float: left;
-  padding-right: 15px;
+  /*padding-right: 15px;*/
   width: 100%;
 }
 #mu-restaurant-menu .mu-restaurant-menu-area .mu-restaurant-menu-content .mu-tab-content-area .mu-tab-content-right {
@@ -2610,4 +2610,26 @@ display: flex;
   .mu-news-single .mu-news-single-content .mu-meta-nav li {   
     border-right: none;
   }
+}
+/*TRUNG CUSTOM*/
+.no_order{
+  display: table-cell;
+}
+.icon-minus{
+  margin-top: 10px;
+}
+.icon-minus, .icon-plus:hover{
+cursor: pointer;
+}
+.input_no_order{
+  max-width: 40px;
+}
+.div_no_order{
+/*  position: absolute !important;
+  bottom: 0 !important;
+  padding-bottom: 15px;*/
+}
+.save_order{
+float: right !important;
+cursor: pointer;
 }
