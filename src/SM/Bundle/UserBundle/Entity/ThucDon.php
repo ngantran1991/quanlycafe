@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Exchange
+ * ThucDon
  *
  * @ORM\Table(name="ThucDon", indexes={@ORM\Index(name="Id_Category", columns={"Id_Category"})})
  * @ORM\Entity(repositoryClass="SM\Bundle\UserBundle\Repository\ThucDonRepository")
@@ -110,7 +110,7 @@ class ThucDon
      * Set idCategory
      *
      * @param \SM\Bundle\UserBundle\Entity\Category $idCategory
-     * @return Exchange
+     * @return Category
      */
     public function setIdCategory(\SM\Bundle\UserBundle\Entity\Category $idCategory = null)
     {

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Exchange
+ * CuaHang
  *
  * @ORM\Table(name="CuaHang")
  * @ORM\Entity(repositoryClass="SM\Bundle\UserBundle\Repository\CuaHangRepository")

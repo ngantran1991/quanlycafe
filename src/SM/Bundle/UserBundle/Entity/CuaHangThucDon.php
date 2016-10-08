@@ -6,36 +6,42 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Category
+ * CuaHangThucDon
  *
- * @ORM\Table(name="Category")
- * @ORM\Entity(repositoryClass="SM\Bundle\UserBundle\Repository\CategoryRepository")
+ * @ORM\Table(name="CuaHang_ThucDon", indexes={@ORM\Index(name="Id_Cua_Hang", columns={"Id_Cua_Hang"}), @ORM\Index(name="Id_Thuc_Don", columns={"Id_Thuc_Don"})})
+ * @ORM\Entity(repositoryClass="SM\Bundle\UserBundle\Repository\CuaHangThucDonRepository")
  */
-class Category
+class CuaHangThucDon
 {
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="Id_Category", type="integer", nullable=false)
+     * @ORM\Column(name="Id_Cua_Hang_Thuc_Don", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idCategory;
+    private $idCuaHangThucDon;
     
     /**
-     * @var string
+     * @var \CuaHang
      *
-     * @ORM\Column(name="name", type="string", nullable=false)
+     * @ORM\ManyToOne(targetEntity="CuaHang")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Cua_Hang", referencedColumnName="Id_Cua_Hang")
+     * })
      */
-    private $name;
+    private $idCuaHang;
     
     /**
-     * @var integer
+     * @var \ThucDon
      *
-     * @ORM\Column(name="Category_pid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="ThucDon")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Thuc_Don", referencedColumnName="Id_Thuc_Don")
+     * })
      */
-    private $categoryPid;
+    private $idThucDon;
     
     /**
      * @var integer
@@ -65,63 +71,63 @@ class Category
 //    }
 
     /**
-     * Get idCategory
+     * Get idCuaHangThucDon
      *
      * @return integer
      */
-    public function getIdCategory()
+    public function getIdCuaHangThucDon()
     {
-        return $this->idCategory;
+        return $this->idCuaHangThucDon;
 
     }
     
     /**
-     * Set name
+     * Set idCuaHang
      *
-     * @param string $name
+     * @param \SM\Bundle\UserBundle\Entity\CuaHang $idCuaHang
+     * @return CuaHang
+     */
+    public function setIdCuaHang(\SM\Bundle\UserBundle\Entity\CuaHang $idCuaHang = null)
+    {
+        $this->idCuaHang = $idCuaHang;
+
+        return $this;
+
+    }
+
+    /**
+     * Get idCuahang
+     *
+     * @return \SM\Bundle\UserBundle\Entity\CuaHang
+     */
+    public function getIdCuaHang()
+    {
+        return $this->idCuahang;
+
+    }
+    
+    /**
+     * Set idThucDon
+     *
+     * @param \SM\Bundle\UserBundle\Entity\ThucDon $idThucDon
      * @return ThucDon
      */
-    public function setName($name)
+    public function setIdThucDon(\SM\Bundle\UserBundle\Entity\ThucDon $idThucDon = null)
     {
-        $this->name = $name;
+        $this->idThucDon = $idThucDon;
 
         return $this;
 
     }
 
     /**
-     * Get name
+     * Get idThucDon
      *
-     * @return string
+     * @return \SM\Bundle\UserBundle\Entity\ThucDon
      */
-    public function getName()
+    public function getIdThucDon()
     {
-        return $this->name;
-
-    }
-    
-    /**
-     * Set CategoryPid
-     *
-     * @param string $categoryPid
-     * @return Exchange
-     */
-    public function setCategoryPid($categoryPid)
-    {
-        $this->categoryPid = $categoryPid;
-
-        return $this;
-
-    }
-
-    /**
-     * Get categoryPid
-     *
-     * @return string
-     */
-    public function getCategoryPid()
-    {
-        return $this->categoryPid;
+        return $this->idThucDon;
 
     }
     
@@ -202,7 +208,7 @@ class Category
 
     public function getId()
     {
-        return $this->getIdCategory();
+        return $this->getIdCuaHangThucDon();
     }
     
 }
