@@ -5,6 +5,9 @@ namespace SM\Bundle\AdminBundle\Controller;
 use SM\Bundle\UserBundle\Plugins\Controller\SMController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use SM\Bundle\UserBundle\Entity\CuaHangThucDon;
+use SM\Bundle\UserBundle\Entity\CuaHang;
+use SM\Bundle\AdminBundle\Form\CuaHangType;
+use Symfony\Component\HttpFoundation\Request;
 
 class CuaHangController extends SMController
 {
@@ -13,6 +16,24 @@ class CuaHangController extends SMController
         $cuaHangRepo = $this->globalManager()->cuaHangRepo;
         $listCuaHang = $cuaHangRepo->findAll();
         return $this->render('AdminBundle:CuaHang:index.html.twig', array('listCuaHang' => $listCuaHang));
+    }
+    
+    public function createAction(Request $request)
+    {
+        $dateNow = new \DateTime();
+        $objCuaHang = new CuaHang();
+        $objCuaHang->setDateCreation($dateNow);
+        $objCuaHang->setDateModification($dateNow);
+        $objCuaHang->setIsActive(1);
+
+        $form = $this->createForm(CuaHangType::class, $objCuaHang);
+        
+        if ($request->isMethod('POST')) {
+            
+        }
+        return $this->render('AdminBundle:CuaHang:create.html.twig', array(
+            'form' => $form->createView(),
+            ));
     }
     
     public function detailAction($id = 1)

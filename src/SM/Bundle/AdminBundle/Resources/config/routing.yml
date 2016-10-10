@@ -10,6 +10,10 @@ admin_cuahang:
     path:     /cuahang
     defaults: { _controller: AdminBundle:CuaHang:index }
     
+admin_cuahang_create:
+    path:     /cuahang/create
+    defaults: { _controller: AdminBundle:CuaHang:create }
+    
 admin_cuahang_detail:
     path:     /cuahang/detail/{id}
     defaults: { _controller: "AdminBundle:CuaHang:detail", id: 1 }
