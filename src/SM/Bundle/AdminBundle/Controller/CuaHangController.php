@@ -14,7 +14,7 @@ class CuaHangController extends SMController
     public function indexAction()
     {
         $cuaHangRepo = $this->globalManager()->cuaHangRepo;
-        $listCuaHang = $cuaHangRepo->findAll();
+        $listCuaHang = $cuaHangRepo->findBy(array('isActive' => 1));
         return $this->render('AdminBundle:CuaHang:index.html.twig', array('listCuaHang' => $listCuaHang));
     }
     
@@ -36,6 +36,37 @@ class CuaHangController extends SMController
             ));
     }
     
+    public function editAction($id = -1, Request $request)
+    {
+        $cuaHangRepo = $this->globalManager()->cuaHangRepo;
+        $objCuaHang = $cuaHangRepo->find($id);
+        if (!$objCuaHang instanceof CuaHang) {
+            return $this->redirect($this->generateUrl("admin_cuahang"));
+        }
+        $form = $this->createForm(CuaHangType::class, $objCuaHang);
+        
+        if ($request->isMethod('POST')) {
+            
+        }
+        return $this->render('AdminBundle:CuaHang:edit.html.twig', array(
+            'form' => $form->createView(),
+            ));
+    }
+    
+    public function deleteAction($id = -1)
+    {
+        $cuaHangRepo = $this->globalManager()->cuaHangRepo;
+        $objCuaHang = $cuaHangRepo->find($id);
+        if (!$objCuaHang instanceof CuaHang) {
+            return $this->redirect($this->generateUrl("admin_cuahang"));
+        }
+        $em = $this->getDoctrine()->getManager();
+        $objCuaHang->setIsActive(0);
+        $em->persist($objCuaHang);
+        $em->flush($objCuaHang);
+        return $this->redirect($this->generateUrl("admin_cuahang"));
+    }
+    
     public function detailAction($id = 1)
     {
         $cuaHangRepo = $this->globalManager()->cuaHangRepo;
@@ -44,7 +75,8 @@ class CuaHangController extends SMController
         $cuaHang = $cuaHangRepo->find($id);
         if (isset($_POST['thucdon']) && is_array($_POST['thucdon'])) {
             $addListTD = $_POST['thucdon'];
-            foreach ($addListTD as $idThucDon) {
+            $addListGia = $_POST['gia'];
+            foreach ($addListTD as $key=>$idThucDon) {
                 $objThucDon = $thucDonRepo->find($idThucDon);
                 $checkExist = $cuaHangThucDonRepo->findBy(array('idThucDon' => $objThucDon,
                                                                 'idCuaHang' => $cuaHang));
@@ -53,12 +85,18 @@ class CuaHangController extends SMController
                     $objCuaHangThucDon = new CuaHangThucDon();
                     $objCuaHangThucDon->setIdCuaHang($cuaHang);
                     $objCuaHangThucDon->setIdThucDon($objThucDon);
+                    if ($addListGia[$key] == null) {
+                        $objCuaHangThucDon->setGia($objThucDon->getGia());
+                    } else {
+                        $objCuaHangThucDon->setGia($addListGia[$key]);
+                    }
                     $objCuaHangThucDon->setIsActive(1);
                     $objCuaHangThucDon->setDateCreation(new \DateTime);
                     $objCuaHangThucDon->setDateModification(new \DateTime);
                     $em->persist($objCuaHangThucDon);
                     $em->flush($objCuaHangThucDon);
                 }
+                return $this->redirect($this->generateUrl("admin_cuahang_detail", array('id' => $id)));
             }
         }
         

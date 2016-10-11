@@ -25,12 +25,12 @@
                                     <a href="{{ path('admin_cuahang_detail', { 'id': cuaHang.idCuaHang }) }}">{{ cuaHang.name }}</a>
                                 </div>
                                 <div class="col-xs-1 col-sm-1 col-lg-1">
-                                    <a href="#">
+                                    <a href="{{ path('admin_cuahang_edit', { 'id': cuaHang.idCuaHang }) }}">
                                         <span class="text-right fa fa-edit"></span>
                                     </a>
                                 </div>
                                 <div class="col-xs-1 col-sm-1 col-lg-1">
-                                    <a href="#">
+                                    <a href="{{ path('admin_cuahang_delete', { 'id': cuaHang.idCuaHang }) }}" onclick="return confirm('Bạn có chắc muốn xoá không?')">
                                         <span>X</span>
                                     </a>
                                 </div>

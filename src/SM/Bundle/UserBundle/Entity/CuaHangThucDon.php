@@ -46,6 +46,13 @@ class CuaHangThucDon
     /**
      * @var integer
      *
+     * @ORM\Column(name="Gia", type="integer", nullable=false)
+     */
+    private $gia;
+    
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="Is_Active", type="integer", nullable=false)
      */
     private $isActive;
@@ -128,6 +135,31 @@ class CuaHangThucDon
     public function getIdThucDon()
     {
         return $this->idThucDon;
+
+    }
+    
+    /**
+     * Set gia
+     *
+     * @param string $gia
+     * @return Exchange
+     */
+    public function setGia($gia)
+    {
+        $this->gia = $gia;
+
+        return $this;
+
+    }
+
+    /**
+     * Get gia
+     *
+     * @return string
+     */
+    public function getGia()
+    {
+        return $this->gia;
 
     }
     

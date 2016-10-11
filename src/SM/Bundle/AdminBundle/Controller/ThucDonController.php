@@ -5,6 +5,8 @@ namespace SM\Bundle\AdminBundle\Controller;
 use SM\Bundle\UserBundle\Plugins\Controller\SMController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use SM\Bundle\UserBundle\Entity\ThucDon;
+use SM\Bundle\AdminBundle\Form\ThucDonType;
 
 class ThucDonController extends SMController
 {
@@ -14,7 +16,7 @@ class ThucDonController extends SMController
         $request->getSession()->set('currentPageCategorie', $currentPage);
         
         $thucDonRepo = $this->globalManager()->thucDonRepo;
-        $listThucDon = $thucDonRepo->findAll();
+        $listThucDon = $thucDonRepo->findBy(array('isActive'=> 1));
         
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($listThucDon, $currentPage, 10);
@@ -23,5 +25,54 @@ class ThucDonController extends SMController
             'entities' => $pagination,
             'numberRecord' => 10,
             'page' => $currentPage,));
+    }
+    
+    public function createAction(Request $request)
+    {
+        $dateNow = new \DateTime();
+        $objThucDon = new ThucDon();
+        $objThucDon->setDateCreation($dateNow);
+        $objThucDon->setDateModification($dateNow);
+        $objThucDon->setIsActive(1);
+
+        $form = $this->createForm(ThucDonType::class, $objThucDon);
+        
+        if ($request->isMethod('POST')) {
+            
+        }
+        return $this->render('AdminBundle:ThucDon:create.html.twig', array(
+            'form' => $form->createView(),
+            ));
+    }
+    
+    public function editAction($id = -1, Request $request)
+    {
+        $thucDonRepo = $this->globalManager()->thucDonRepo;
+        $objThucDon = $thucDonRepo->find($id);
+        if (!$objThucDon instanceof ThucDon) {
+            return $this->redirect($this->generateUrl("admin_thucdon"));
+        }
+        $form = $this->createForm(ThucDonType::class, $objThucDon);
+        
+        if ($request->isMethod('POST')) {
+            
+        }
+        return $this->render('AdminBundle:ThucDon:edit.html.twig', array(
+            'form' => $form->createView(),
+            ));
+    }
+    
+    public function deleteAction($id = -1)
+    {
+        $thucDonRepo = $this->globalManager()->thucDonRepo;
+        $objThucDon = $thucDonRepo->find($id);
+        if (!$objThucDon instanceof ThucDon) {
+            return $this->redirect($this->generateUrl("admin_thucdon"));
+        }
+        $em = $this->getDoctrine()->getManager();
+        $objThucDon->setIsActive(0);
+        $em->persist($objThucDon);
+        $em->flush($objThucDon);
+        return $this->redirect($this->generateUrl("admin_thucdon"));
     }
 }

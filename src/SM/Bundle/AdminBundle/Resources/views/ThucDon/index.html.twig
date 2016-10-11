@@ -9,7 +9,7 @@
                 <h1 class="page-header">Thực Đơn</h1>
             </div>
             <div class=".col-lg-1">
-                <button type="button" class="btn btn-success">Thêm Thực Đơn</button>
+                <a href='{{ path('admin_thucdon_create') }}'type="button" class="btn btn-success">Thêm Thực Đơn</a>
             </div>
             <br/>
             <!-- /.col-lg-12 -->
@@ -52,7 +52,8 @@
                                                 <td>{{ entity.gia }}</td>
                                                 <td>{{ entity.note }}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-primarybtn btn-info">Edit</a>
+                                                    <a href="{{ path('admin_thucdon_edit', { 'id': entity.idThucDon }) }}" class="btn btn-primarybtn btn-info">Edit</a>
+                                                    <a onclick="return confirm('Bạn có chắc muốn xoá thực đơn ko?')"href="{{ path('admin_thucdon_delete', { 'id': entity.idThucDon }) }}"type="button" class="btn btn-danger">X</a>
                                                 </td>
                                             </tr>
                                             {% endfor %}

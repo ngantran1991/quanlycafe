@@ -14,6 +14,14 @@ admin_cuahang_create:
     path:     /cuahang/create
     defaults: { _controller: AdminBundle:CuaHang:create }
     
+admin_cuahang_edit:
+    path:     /cuahang/edit/{id}
+    defaults: { _controller: "AdminBundle:CuaHang:edit", id: 1 }
+    
+admin_cuahang_delete:
+    path:     /cuahang/delete/{id}
+    defaults: { _controller: "AdminBundle:CuaHang:delete", id: -1 }
+    
 admin_cuahang_detail:
     path:     /cuahang/detail/{id}
     defaults: { _controller: "AdminBundle:CuaHang:detail", id: 1 }
@@ -21,3 +29,15 @@ admin_cuahang_detail:
 admin_thucdon:
     path:     /thucdon
     defaults: { _controller: AdminBundle:ThucDon:index }
+    
+admin_thucdon_create:
+    path:     /thucdon/create
+    defaults: { _controller: AdminBundle:ThucDon:create }
+    
+admin_thucdon_edit:
+    path:     /thucdon/edit/{id}
+    defaults: { _controller: "AdminBundle:ThucDon:edit", id: 1 }
+    
+admin_thucdon_delete:
+    path:     /thucdon/delete/{id}
+    defaults: { _controller: "AdminBundle:ThucDon:delete", id: -1 }
