@@ -49,6 +49,20 @@ class Order
     private $listProductno;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="List_Product_Prices", type="string", nullable=false)
+     */
+    private $listProductPrices;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Total_Prices", type="string", nullable=false)
+     */
+    private $totalPrices;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="Is_Active", type="integer", nullable=false)
@@ -160,7 +174,57 @@ class Order
         return $this->listProductno;
 
     }
-    
+
+    /**
+     * Set listProductPrices
+     *
+     * @param string $listProductPrices
+     * @return string
+     */
+    public function setList_Product_Prices($listProductPrices)
+    {
+        $this->listProductPrices = $listProductPrices;
+
+        return $this;
+
+    }
+
+    /**
+     * Get listProductPrices
+     *
+     * @return string
+     */
+    public function getList_Product_Prices()
+    {
+        return $this->listProductPrices;
+
+    }    
+ 
+     /**
+     * Set totalPrices
+     *
+     * @param string $totalPrices
+     * @return string
+     */
+    public function settotal_Prices($totalPrices)
+    {
+        $this->totalPrices = $totalPrices;
+
+        return $this;
+
+    }
+
+    /**
+     * Get totalPrices
+     *
+     * @return string
+     */
+    public function gettotal_Prices()
+    {
+        return $this->totalPrices;
+
+    }  
+
     /**
      * Set isActive
      *

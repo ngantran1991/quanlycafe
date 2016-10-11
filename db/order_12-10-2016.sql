@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2016 at 06:38 PM
+-- Generation Time: Oct 11, 2016 at 07:12 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -33,7 +33,9 @@ CREATE TABLE `order` (
   `Is_Active` int(11) NOT NULL,
   `Date_Creation` datetime NOT NULL,
   `Date_Modification` date DEFAULT NULL,
-  `Id_Cua_Hang` int(11) DEFAULT NULL
+  `Id_Cua_Hang` int(11) DEFAULT NULL,
+  `List_Product_Prices` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Total_Prices` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -55,7 +57,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `Id_Order` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id_Order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --

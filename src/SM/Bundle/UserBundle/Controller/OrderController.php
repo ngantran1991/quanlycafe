@@ -39,13 +39,17 @@ class OrderController extends SMController
 			$data['Is_Active'] = 0;
 			$data['Date_Creation'] = new \DateTime;
 			$data['Date_Modification'] = new \DateTime;
-			//var_dump("<pre>",$data);
+			$data['list_price_no_order'] = implode(',', $post['price_no_order']);
+			$data['total_prices'] = $post['total_prices'];
+			//var_dump("<pre>",$data);die;
 			$cuaHangRepo = $this->globalManager()->cuaHangRepo;
 			$cuaHang_id = $cuaHangRepo->find(intval($data['Id_Cua_Hang']));
 			$order = new Order();
 			$order->setIdCuaHang($cuaHang_id);
 			$order->setList_Product_id($data['List_Product_id']);
 			$order->setList_Product_no($data['List_Product_no']);
+			$order->setList_Product_Prices($data['list_price_no_order']);
+			$order->settotal_Prices($data['total_prices']);
 			$order->setIsActive($data['Is_Active']);
 			$order->setDateCreation($data['Date_Creation']);
 			$order->setDateModification($data['Date_Modification']);
