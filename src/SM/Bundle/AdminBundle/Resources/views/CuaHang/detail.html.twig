@@ -46,7 +46,7 @@
                                             <td>{{ thucDonCuaHang.idThucDon.name }}</td>
                                             <td>{{ thucDonCuaHang.idThucDon.gia }}</td>
                                             <td>
-                                                <a href="#">
+                                                <a onclick="return confirm('Bạn có muốn xoá thực đơn?')" href="{{ path('admin_cuahang_detail_delete', { 'idCuaHangThucDon': thucDonCuaHang.idCuaHangThucDon,'idCuaHang': id }) }}">
                                                     <span>X</span>
                                                 </a>
                                             </td>

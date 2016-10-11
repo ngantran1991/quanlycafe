@@ -26,6 +26,10 @@ admin_cuahang_detail:
     path:     /cuahang/detail/{id}
     defaults: { _controller: "AdminBundle:CuaHang:detail", id: 1 }
     
+admin_cuahang_detail_delete:
+    path:     /cuahang/detail/delete/{idCuaHangThucDon}/{idCuaHang}
+    defaults: { _controller: "AdminBundle:CuaHang:detailDelete", idCuaHangThucDon: -1, idCuahang: -1 }
+    
 admin_thucdon:
     path:     /thucdon
     defaults: { _controller: AdminBundle:ThucDon:index }

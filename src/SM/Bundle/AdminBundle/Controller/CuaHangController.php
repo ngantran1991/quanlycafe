@@ -102,7 +102,7 @@ class CuaHangController extends SMController
         
         
         $listThucDon = $thucDonRepo->findAll();
-        $listThucDonCuaHang = $cuaHangThucDonRepo->findBy(array('idCuaHang' => $id));
+        $listThucDonCuaHang = $cuaHangThucDonRepo->findBy(array('idCuaHang' => $id, 'isActive' => 1));
         
         
         return $this->render('AdminBundle:CuaHang:detail.html.twig', array(
@@ -111,4 +111,19 @@ class CuaHangController extends SMController
             'cuaHang' => $cuaHang,
             'id' => $id));
     }
+    
+    public function detailDeleteAction($idCuaHangThucDon = -1, $idCuaHang = -1)
+    {
+        $cuaHangThucDonRepo = $this->globalManager()->cuaHangThucDonRepo;
+        $objCuaHangThucDon = $cuaHangThucDonRepo->find($idCuaHangThucDon);
+        if (!$objCuaHangThucDon instanceof CuaHangThucDon) {
+            return $this->redirect($this->generateUrl("admin_cuahang_detail", array('id' => $idCuaHang)));
+        }
+        $em = $this->getDoctrine()->getManager();
+        $objCuaHangThucDon->setIsActive(0);
+        $em->persist($objCuaHangThucDon);
+        $em->flush($objCuaHangThucDon);
+        return $this->redirect($this->generateUrl("admin_cuahang_detail", array('id' => $idCuaHang)));
+    }
+            
 }
