@@ -27,9 +27,23 @@ class CuaHangController extends SMController
         $objCuaHang->setIsActive(1);
 
         $form = $this->createForm(CuaHangType::class, $objCuaHang);
+        $form->handleRequest($request);
         
-        if ($request->isMethod('POST')) {
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $objCuaHang->getImage();
             
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            //$this->get('helper.imageresizer')->resizeImage($file, $this->getParameter('image_cuahang_directory') , 450, 800);
+            $file->move(
+                $this->getParameter('image_cuahang_directory'),
+                $fileName
+            );
+            
+            $objCuaHang->setImage("/uploads/cuahang/".$fileName);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($objCuaHang);
+            $em->flush($objCuaHang);
+            return $this->redirect($this->generateUrl("admin_cuahang"));
         }
         return $this->render('AdminBundle:CuaHang:create.html.twig', array(
             'form' => $form->createView(),

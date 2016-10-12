@@ -5,6 +5,8 @@ namespace SM\Bundle\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * CuaHang
  *
@@ -36,11 +38,11 @@ class CuaHang
      * @ORM\Column(name="address", type="string", nullable=false)
      */
     private $address;
-    
+
     /**
-     * @var string
+     * @ORM\Column(type="string")
      *
-     * @ORM\Column(name="image", type="string", nullable=false)
+     * @Assert\File(mimeTypes={ "image/jpeg", "image/png" })
      */
     private $image;
     
