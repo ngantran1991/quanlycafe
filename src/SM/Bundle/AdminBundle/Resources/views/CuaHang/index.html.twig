@@ -39,7 +39,7 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="text-center">
-                                <a href="{{ path('admin_cuahang_detail', { 'id': cuaHang.idCuaHang }) }}"><img src="{{ asset(cuaHang.image) }}" class="img-thumbnail"/></a>
+                                <a href="{{ path('admin_cuahang_detail', { 'id': cuaHang.idCuaHang }) }}"><div style="background-image:url('{{ asset(cuaHang.image) }}')" class="img-thumbnail custom_img1"></div></a>
                             </div><br/>
                             <p class="text-left">Địa chỉ: {{ cuaHang.address }}</p>
                             <!-- /.table-responsive -->

@@ -432,3 +432,12 @@ table.dataTable thead .sorting:after {
     border-left-width: 0;
   }
 }
+.custom_img1{
+  position: relative;
+  float: left;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  width: 472px !important;
+  height: 270px !important;
+ }
