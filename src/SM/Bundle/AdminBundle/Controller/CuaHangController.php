@@ -79,7 +79,8 @@ class CuaHangController extends SMController
             foreach ($addListTD as $key=>$idThucDon) {
                 $objThucDon = $thucDonRepo->find($idThucDon);
                 $checkExist = $cuaHangThucDonRepo->findBy(array('idThucDon' => $objThucDon,
-                                                                'idCuaHang' => $cuaHang));
+                                                                'idCuaHang' => $cuaHang,
+                                                                'isActive' => 1));
                 if (!count($checkExist)) {
                     $em = $this->getDoctrine()->getManager();
                     $objCuaHangThucDon = new CuaHangThucDon();
