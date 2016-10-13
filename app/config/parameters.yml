@@ -12,3 +12,4 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
     locale: en
     image_cuahang_directory: '%kernel.root_dir%/../web/uploads/cuahang'
+    image_thucdon_directory: '%kernel.root_dir%/../web/uploads/thucdon'
