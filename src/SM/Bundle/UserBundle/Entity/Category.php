@@ -33,7 +33,7 @@ class Category
     /**
      * @var integer
      *
-     * @ORM\Column(name="Category_pid", type="integer", nullable=false)
+     * @ORM\Column(name="Category_pid", type="integer", nullable=true)
      */
     private $categoryPid;
     

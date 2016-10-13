@@ -45,3 +45,19 @@ admin_thucdon_edit:
 admin_thucdon_delete:
     path:     /thucdon/delete/{id}
     defaults: { _controller: "AdminBundle:ThucDon:delete", id: -1 }
+    
+admin_category:
+    path:     /category
+    defaults: { _controller: AdminBundle:Category:index }
+    
+admin_category_create:
+    path:     /category/create
+    defaults: { _controller: AdminBundle:Category:create }
+    
+admin_category_edit:
+    path:     /category/edit/{id}
+    defaults: { _controller: "AdminBundle:Category:edit", id: 1 }
+    
+admin_category_delete:
+    path:     /category/delete/{id}
+    defaults: { _controller: "AdminBundle:Category:delete", id: -1 }

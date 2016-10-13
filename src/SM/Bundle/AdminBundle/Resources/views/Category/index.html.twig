@@ -1,15 +1,15 @@
 {% extends 'AdminBundle::layout.html.twig' %}
 {% block header %}
-    Thực Đơn
+    Loại Thực Đơn
 {% endblock header %}
 {% block body -%}
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Thực Đơn</h1>
+                <h1 class="page-header">Loại Thực Đơn</h1>
             </div>
             <div class=".col-lg-1">
-                <a href='{{ path('admin_thucdon_create') }}'type="button" class="btn btn-success">Thêm Thực Đơn</a>
+                <a href='{{ path('admin_category_create') }}'type="button" class="btn btn-success">Thêm Loại Thực Đơn</a>
             </div>
             <br/>
             <!-- /.col-lg-12 -->
@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-primary">
-                <div class="panel-heading"> <i class="glyphicon glyphicon-menu-hamburger"></i> Thực Đơn </div>
+                <div class="panel-heading"> <i class="glyphicon glyphicon-menu-hamburger"></i> Loại Thực Đơn </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="dataTable_wrapper">
@@ -28,10 +28,6 @@
                                     <tr>
                                         <th>STT</th>
                                         <th>Tên</th>
-                                        <th>Chi Tiếc</th>
-                                        <th>Hình Ảnh</th>
-                                        <th>Giá</th>
-                                        <th>Ghi Chú</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -45,15 +41,9 @@
                                                 {% set num = num + 1 %}
                                                 <td>{{ num }}</td>
                                                 <td>{{ entity.name }}</td>
-                                                <td>{{ entity.detail }}</td>
                                                 <td>
-                                                    <img src="{{ asset(entity.image) }}" class="img-thumbnail"/>
-                                                </td>
-                                                <td>{{ entity.gia }}</td>
-                                                <td>{{ entity.note }}</td>
-                                                <td>
-                                                    <a href="{{ path('admin_thucdon_edit', { 'id': entity.idThucDon }) }}" class="btn btn-primarybtn btn-info">Edit</a>
-                                                    <a onclick="return confirm('Bạn có chắc muốn xoá thực đơn ko?')"href="{{ path('admin_thucdon_delete', { 'id': entity.idThucDon }) }}"type="button" class="btn btn-danger">X</a>
+                                                    <a href="{{ path('admin_category_edit', { 'id': entity.idCategory }) }}" class="btn btn-primarybtn btn-info">Edit</a>
+                                                    <a onclick="return confirm('Bạn có chắc muốn xoá loại thực đơn ko?')"href="{{ path('admin_category_delete', { 'id': entity.idCategory }) }}"type="button" class="btn btn-danger">X</a>
                                                 </td>
                                             </tr>
                                             {% endfor %}

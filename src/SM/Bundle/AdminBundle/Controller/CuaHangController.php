@@ -11,11 +11,22 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CuaHangController extends SMController
 {
-    public function indexAction()
+    public function indexAction($page = 1, Request $request)
     {
         $cuaHangRepo = $this->globalManager()->cuaHangRepo;
+        
+        $currentPage = $request->query->getInt('page', $page);
+        $request->getSession()->set('currentCuahang', $currentPage);
+        
         $listCuaHang = $cuaHangRepo->findBy(array('isActive' => 1));
-        return $this->render('AdminBundle:CuaHang:index.html.twig', array('listCuaHang' => $listCuaHang));
+        
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($listCuaHang, $currentPage, 6);
+        
+        return $this->render('AdminBundle:CuaHang:index.html.twig', array(
+            'listCuaHang' => $pagination,
+            'numberRecord' => 6,
+            'page' => $currentPage));
     }
     
     public function createAction(Request $request)
@@ -54,16 +65,44 @@ class CuaHangController extends SMController
     {
         $cuaHangRepo = $this->globalManager()->cuaHangRepo;
         $objCuaHang = $cuaHangRepo->find($id);
+        
         if (!$objCuaHang instanceof CuaHang) {
             return $this->redirect($this->generateUrl("admin_cuahang"));
         }
+        $imageOld = $objCuaHang->getImage();
+        $objCuaHang->setImage(null);
         $form = $this->createForm(CuaHangType::class, $objCuaHang);
+        $form->handleRequest($request);
         
-        if ($request->isMethod('POST')) {
-            
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $objCuaHang->getImage();
+            if ($file != null) {
+                $fileNameOld = str_replace('\\', "/", substr(__FILE__,0,-59)."/web/".$imageOld);
+                if (file_exists($fileNameOld)) {
+                    unlink($fileNameOld);
+                }
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                
+                //$this->get('helper.imageresizer')->resizeImage($file, $this->getParameter('image_cuahang_directory') , 450, 800);
+                $file->move(
+                    $this->getParameter('image_cuahang_directory'),
+                    $fileName
+                );
+                $objCuaHang->setImage("/uploads/cuahang/".$fileName);
+            } else {
+                $objCuaHang->setImage($imageOld);
+            }
+            $objCuaHang->setDateModification(new \DateTime);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($objCuaHang);
+            $em->flush($objCuaHang);
+            return $this->redirect($this->generateUrl("admin_cuahang"));
         }
+        
         return $this->render('AdminBundle:CuaHang:edit.html.twig', array(
             'form' => $form->createView(),
+            'imageOld' => $imageOld,
+            'id' => $id
             ));
     }
     
@@ -75,6 +114,7 @@ class CuaHangController extends SMController
             return $this->redirect($this->generateUrl("admin_cuahang"));
         }
         $em = $this->getDoctrine()->getManager();
+        $objCuaHang->setDateCreation(new \DateTime);
         $objCuaHang->setIsActive(0);
         $em->persist($objCuaHang);
         $em->flush($objCuaHang);
@@ -135,6 +175,7 @@ class CuaHangController extends SMController
             return $this->redirect($this->generateUrl("admin_cuahang_detail", array('id' => $idCuaHang)));
         }
         $em = $this->getDoctrine()->getManager();
+        $objCuaHangThucDon->setDateModification(new \DateTime);
         $objCuaHangThucDon->setIsActive(0);
         $em->persist($objCuaHangThucDon);
         $em->flush($objCuaHangThucDon);

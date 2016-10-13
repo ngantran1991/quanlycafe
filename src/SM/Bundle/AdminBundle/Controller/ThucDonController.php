@@ -36,9 +36,23 @@ class ThucDonController extends SMController
         $objThucDon->setIsActive(1);
 
         $form = $this->createForm(ThucDonType::class, $objThucDon);
+        $form->handleRequest($request);
         
-        if ($request->isMethod('POST')) {
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $objThucDon->getImage();
             
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            //$this->get('helper.imageresizer')->resizeImage($file, $this->getParameter('image_cuahang_directory') , 450, 800);
+            $file->move(
+                $this->getParameter('image_thucdon_directory'),
+                $fileName
+            );
+            
+            $objThucDon->setImage("/uploads/thucdon/".$fileName);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($objThucDon);
+            $em->flush($objThucDon);
+            return $this->redirect($this->generateUrl("admin_thucdon"));
         }
         return $this->render('AdminBundle:ThucDon:create.html.twig', array(
             'form' => $form->createView(),
@@ -52,13 +66,39 @@ class ThucDonController extends SMController
         if (!$objThucDon instanceof ThucDon) {
             return $this->redirect($this->generateUrl("admin_thucdon"));
         }
+        $imageOld = $objThucDon->getImage();
+        $objThucDon->setImage(null);
         $form = $this->createForm(ThucDonType::class, $objThucDon);
+        $form->handleRequest($request);
         
-        if ($request->isMethod('POST')) {
-            
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $objThucDon->getImage();
+            if ($file != null) {
+                $fileNameOld = str_replace('\\', "/", substr(__FILE__,0,-59)."/web/".$imageOld);
+                if (file_exists($fileNameOld)) {
+                    unlink($fileNameOld);
+                }
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                
+                //$this->get('helper.imageresizer')->resizeImage($file, $this->getParameter('image_cuahang_directory') , 450, 800);
+                $file->move(
+                    $this->getParameter('image_thucdon_directory'),
+                    $fileName
+                );
+                $objThucDon->setImage("/uploads/thucdon/".$fileName);
+            } else {
+                $objThucDon->setImage($imageOld);
+            }
+            $objThucDon->setDateModification(new \DateTime);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($objThucDon);
+            $em->flush($objThucDon);
+            return $this->redirect($this->generateUrl("admin_thucdon"));
         }
         return $this->render('AdminBundle:ThucDon:edit.html.twig', array(
             'form' => $form->createView(),
+            'imageOld' => $imageOld,
+            'id' => $id
             ));
     }
     
@@ -70,6 +110,7 @@ class ThucDonController extends SMController
             return $this->redirect($this->generateUrl("admin_thucdon"));
         }
         $em = $this->getDoctrine()->getManager();
+        $objThucDon->setDateModification(new \DateTime);
         $objThucDon->setIsActive(0);
         $em->persist($objThucDon);
         $em->flush($objThucDon);

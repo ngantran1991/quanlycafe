@@ -31,7 +31,9 @@ class CuaHangType extends AbstractType
                     'label' => '',
                     'attr' => array(
                         'class' => 'form-control',)))
-            ->add('image', FileType::class, array('label' => 'Image (Image file)'))
+            ->add('image', FileType::class, array(
+                'required' => false,
+                'label' => 'Image (Image file)'))
             ->add('save', SubmitType::class, array(
                 'attr' => array(
                     'class' => 'btn btn-success'
