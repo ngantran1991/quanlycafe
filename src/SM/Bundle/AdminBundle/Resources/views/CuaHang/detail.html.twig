@@ -24,7 +24,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <form action='{{ path('admin_cuahang_detail') }}' method="post">
+                            <form action='{{ path('admin_cuahang_detail', {'id': id}) }}' method="post">
                             <div class="table-responsive">
                                 <input type='hidden' name='id' value='{{ id }}'/>
                                 <table class="table">
