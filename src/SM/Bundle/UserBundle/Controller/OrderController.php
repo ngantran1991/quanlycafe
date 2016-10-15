@@ -19,9 +19,17 @@ class OrderController extends SMController
 		$cateGoryRepo = $this->globalManager()->categoryRepo;
 		$listCategory = $cateGoryRepo->findAll();
 
+		$cuaHangThucDonRepository = $this->globalManager()->cuaHangThucDonRepo;
+		$listThucDon = $cuaHangThucDonRepository->test1(1);
+
+		$listId = array();
+		foreach ($listThucDon as $key => $value) {
+			array_push($listId, $value->getIdThucDon()->getIdThucDon());
+		}
 		$listThucDonByCategory = array();
 		foreach ($listCategory as $key => $ct) {
-			array_push($listThucDonByCategory, $thucDonRepo->findByIdCategory($ct->getidCategory()));
+			//array_push($listThucDonByCategory, $thucDonRepo->findByIdCategory($ct->getidCategory()));
+			array_push($listThucDonByCategory, $cuaHangThucDonRepository->getThucDonByCategoryInArray($ct->getidCategory(), $listId));
 		}
 		$id_cua_hang = 1;
 		$data = array('listCategory' => $listCategory,
@@ -30,17 +38,17 @@ class OrderController extends SMController
 		return $this->render('UserBundle:Order:index.html.twig',$data);
 	}
 	public function saveformorderAction(){
-		if(isset($_POST)){
+		if(isset($_POST['id_no_order'])){
 			date_default_timezone_set('Asia/Ho_Chi_Minh');
 			$post = $_POST;
-			$data['List_Product_no'] = implode(',', $post['input_no_order']);
-			$data['List_Product_id'] = implode(',', $post['id_no_order']);
+			$data['List_Product_id'] = implode('- ', $post['id_no_order']);
+			$data['List_Product_no'] = implode('- ', $post['input_no_order']);
+			$data['list_price_no_order'] = implode('- ', $post['price_no_order']);
+			$data['total_prices'] = $post['total_prices'];
 			$data['Id_Cua_Hang'] = $post['id_cua_hang'];
-			$data['Is_Active'] = 0;
+			$data['Is_Active'] = 1;
 			$data['Date_Creation'] = new \DateTime;
 			$data['Date_Modification'] = new \DateTime;
-			$data['list_price_no_order'] = implode(',', $post['price_no_order']);
-			$data['total_prices'] = $post['total_prices'];
 			//var_dump("<pre>",$data);die;
 			$cuaHangRepo = $this->globalManager()->cuaHangRepo;
 			$cuaHang_id = $cuaHangRepo->find(intval($data['Id_Cua_Hang']));
@@ -59,6 +67,8 @@ class OrderController extends SMController
 			$em->flush($order);
 			return new Response('Saved new order with id '.$order->getId());
 
+		}else{
+			return new Response('Please order !');
 		}
 	}
 }

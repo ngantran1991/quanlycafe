@@ -23,4 +23,16 @@ class ThucDonRepository extends BaseRepository
 		->getQuery();
 		return $result->getArrayResult();
 	}
+	public function getThucDonByCategoryInArray($idCategory = 1, $listid = array())
+	{
+		$result = $this->createQueryBuilder('td')
+		->select('td, CuaHangThucDon')
+		->leftJoin('td.idThucDon','CuaHangThucDon')
+		->where('td.idCategory = :idCategory')
+		->setParameter('idCategory', $idCategory)
+		->andWhere('td.idThucDon IN (:listid)')
+		->setParameter('listid', $listid)
+		->getQuery();
+		return $result->getArrayResult();
+	}
 }

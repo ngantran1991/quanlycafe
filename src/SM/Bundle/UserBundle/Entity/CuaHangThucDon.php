@@ -47,6 +47,10 @@ class CuaHangThucDon
      * @var integer
      *
      * @ORM\Column(name="Gia", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="ThucDon")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Thuc_Don", referencedColumnName="Id_Thuc_Don")
+     * })
      */
     private $gia;
     

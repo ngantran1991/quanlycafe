@@ -3,6 +3,7 @@
 namespace SM\Bundle\UserBundle\Repository;
 
 use SM\Bundle\UserBundle\Repository\BaseRepository;
+use SM\Bundle\UserBundle\Repository\ThucDonRepository;
 use SM\Bundle\UserBundle\Constants\Configs;
 use Doctrine\ORM\Query;
 
@@ -14,4 +15,29 @@ use Doctrine\ORM\Query;
  */
 class CuaHangThucDonRepository extends BaseRepository
 {
+	public function test1($value=1)
+	{
+		$groups = $this->createQueryBuilder('ch')
+		->select('ch, ThucDon')
+		->join('ch.idThucDon', 'ThucDon')
+		->where('ch.idCuaHang = :id')
+		->setParameter('id', $value)
+		->getQuery()
+		->getResult();
+		return $groups;
+	}
+	public function getThucDonByCategoryInArray($idCategory = 1, $listid = array())
+	{
+		$groups = $this->createQueryBuilder('ch')
+		->select('ch.gia, td.name, td.idThucDon')
+		->join('ch.idThucDon', 'td')
+		->where('td.idCategory = :idCategory')
+		->setParameter('idCategory', $idCategory)
+		->andWhere('td.idThucDon IN (:listid)')
+		->setParameter('listid', $listid)
+		->getQuery()
+		->getArrayResult();
+		//var_dump("<pre>",$groups);die;
+		return $groups;
+	}
 }
