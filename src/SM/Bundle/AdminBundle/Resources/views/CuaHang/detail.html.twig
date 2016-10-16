@@ -2,6 +2,62 @@
 {% block header %}
     Cửa Hàng
 {% endblock header %}
+{% block script_footer%}
+    <script>
+        $(function() {
+            Morris.Area({
+            element: 'morris-area-chart',
+            data: [{
+                period: '2010 Q1',
+                Bán: 2666,
+                'Chi Tiêu': null
+            }, {
+                period: '2010 Q2',
+                Bán: 2778,
+                'Chi Tiêu': 2294
+            }, {
+                period: '2010 Q3',
+                Bán: 4912,
+                'Chi Tiêu': 1969
+            }, {
+                period: '2010 Q4',
+                Bán: 3767,
+                'Chi Tiêu': 3597
+            }, {
+                period: '2011 Q1',
+                Bán: 6810,
+                'Chi Tiêu': 1914
+            }, {
+                period: '2011 Q2',
+                Bán: 5670,
+                'Chi Tiêu': 4293
+            }, {
+                period: '2011 Q3',
+                Bán: 4820,
+                'Chi Tiêu': 3795
+            }, {
+                period: '2011 Q4',
+                Bán: 15073,
+                'Chi Tiêu': 5967
+            }, {
+                period: '2012 Q1',
+                Bán: 10687,
+                'Chi Tiêu': 4460
+            }, {
+                period: '2012 Q2',
+                Bán: 8432,
+                'Chi Tiêu': 5713
+            }],
+            xkey: 'period',
+            ykeys: ['Bán', 'Chi Tiêu'],
+            labels: ['Bán', 'Chi Tiêu'],
+            pointSize: 2,
+            hideHover: 'auto',
+            resize: true
+        });
+});
+    </script>
+{% endblock script_footer %} 
 {% block body %}
 <div id="page-wrapper">
             <div class="row">
@@ -13,6 +69,39 @@
                 </div>
                 <br/>
                 <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Thông Kê Doanh Số Của Cửa Hàng
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        Quý
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li><a href="#">Quý</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Năm</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Tháng</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="morris-area-chart"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                </div>
             </div>
             <!-- /.row -->
             <div class="row">
