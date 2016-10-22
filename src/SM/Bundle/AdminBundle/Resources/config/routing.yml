@@ -62,6 +62,10 @@ admin_category_delete:
     path:     /category/delete/{id}
     defaults: { _controller: "AdminBundle:Category:delete", id: -1 }
     
-admin_thongke:
-    path:     /thongke
-    defaults: { _controller: AdminBundle:ThongKe:index }
+admin_thongke_cuahang:
+    path:     /thongkecuahang
+    defaults: { _controller: AdminBundle:ThongKe:thongKeCuaHang }
+    
+admin_tongket:
+    path:     /tongket
+    defaults: { _controller: AdminBundle:TongKet:index }

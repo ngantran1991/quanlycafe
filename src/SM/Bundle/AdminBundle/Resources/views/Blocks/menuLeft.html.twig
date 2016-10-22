@@ -30,7 +30,19 @@
                             </ul>
                         
                         <li>
-                            <a href="{{ path('admin_thongke') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Thống Kê</a>
+                            <a href="javascript:void"><i class="fa fa-bar-chart-o fa-fw"></i> Thống Kê<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ path('admin_thongke_cuahang') }}">Từng Cửa Hàng</a>
+                                </li>
+                                {#<li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>#}
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_tongket') }}"><i class="fa fa-dashboard fa-fw"></i> Tổng Kêt</a>
                             {#<ul class="nav nav-second-level">
                                 <li>
                                     <a href="flot.html">Flot Charts</a>

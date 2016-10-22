@@ -11,9 +11,21 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ThongKeController extends SMController
 {
-    public function indexAction($page = 1, Request $request)
+    public function thongKeCuaHangAction(Request $request)
     {
-        return $this->render('AdminBundle:ThongKe:index.html.twig');
+        $cuaHangRepo = $this->globalManager()->cuaHangRepo;
+        $listCuaHang = $cuaHangRepo->findBy(array('isActive' => 1));
+        $idCuahang = $request->get('idCuaHang') != null ? $request->get('idCuaHang') : 1;
+        $nowDate = new \DateTime();
+
+        $setThang = $request->get('setThang') != null ? $request->get('setThang') : $nowDate->format('d-m-Y');
+        
+        
+        return $this->render('AdminBundle:ThongKe:thongKeCuaHang.html.twig', array(
+            'listCuaHang' => $listCuaHang,
+            'setCuaHang' => $idCuahang,
+            'setThang' => $setThang
+        ));
     }
             
 }
