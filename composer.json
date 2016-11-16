@@ -26,6 +26,7 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "ircmaxell/password-compat": "~1.0.3",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "beberlei/DoctrineExtensions":"1.0",
         "knplabs/knp-paginator-bundle": "^2.5"
     },
     "require-dev": {
