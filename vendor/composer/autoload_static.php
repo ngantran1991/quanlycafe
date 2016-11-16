@@ -47,6 +47,7 @@ class ComposerStaticInit28bf1a4e7699a533370a00f569c4cd48
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Cache\\' => 10,
         ),
         'M' => 
@@ -69,6 +70,7 @@ class ComposerStaticInit28bf1a4e7699a533370a00f569c4cd48
             'Doctrine\\Bundle\\FixturesBundle\\' => 31,
             'Doctrine\\Bundle\\DoctrineCacheBundle\\' => 36,
             'Doctrine\\Bundle\\DoctrineBundle\\' => 31,
+            'DoctrineExtensions\\' => 19,
         ),
     );
 
@@ -149,6 +151,10 @@ class ComposerStaticInit28bf1a4e7699a533370a00f569c4cd48
         array (
             0 => __DIR__ . '/..' . '/sensio/distribution-bundle',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
@@ -189,6 +195,10 @@ class ComposerStaticInit28bf1a4e7699a533370a00f569c4cd48
         array (
             0 => __DIR__ . '/..' . '/doctrine/doctrine-bundle',
         ),
+        'DoctrineExtensions\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src',
+        ),
     );
 
     public static $fallbackDirsPsr4 = array (
@@ -208,13 +218,6 @@ class ComposerStaticInit28bf1a4e7699a533370a00f569c4cd48
             'SensioLabs\\Security' => 
             array (
                 0 => __DIR__ . '/..' . '/sensiolabs/security-checker',
-            ),
-        ),
-        'P' => 
-        array (
-            'Psr\\Log\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/psr/log',
             ),
         ),
         'K' => 

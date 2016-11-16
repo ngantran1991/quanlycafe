@@ -14,6 +14,23 @@ use Doctrine\ORM\Query;
  */
 class ThucDonRepository extends BaseRepository
 {
+    public function getListMenu()
+    {
+        $result = $this->createQueryBuilder('td')
+        ->select('td.idThucDon, td.name')
+        ->getQuery();
+        $arrReturn = $this->customListAllThucDon($result->getArrayResult());
+
+        return $arrReturn;
+    }
+    private function customListAllThucDon($listThucDon = array())
+    {
+        $arrReturn = array();
+        foreach ($listThucDon as $arrThucDon) {
+            $arrReturn[$arrThucDon['idThucDon']] = $arrThucDon['name'];
+        }
+        return $arrReturn;
+    }
 	public function getThucDonByCategory($idCategory = 1)
 	{
 		$result = $this->createQueryBuilder('td')
