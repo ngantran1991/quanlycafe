@@ -54,7 +54,8 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th colspan="2">Danh Sách Order</th>
+                                            <th>Ngày</th>
+                                            <th colspan="3">Danh Sách Order</th>
                                             <th>Tổng Cộng</th>
                                         </tr>
                                     </thead>
@@ -62,12 +63,19 @@
                                         {% for orderCuahang in listOrderCuaHang %}
                                         <tr>
                                             <td rowspan="{{ orderCuahang.product|length }}">{{ orderCuahang.stt }}</td>
+                                            <td rowspan="{{ orderCuahang.product|length }}">{{ orderCuahang.date }}</td>
                                             {% for key, oneProduct in orderCuahang.product %}
+                                                {% if key != 0 %}
+                                                    <tr>
+                                                {% endif %}
+                                                <td>{{ oneProduct.name }}</td>
+                                                <td>{{ oneProduct.soLuong }}</td>
+                                                <td>{{ oneProduct.price }}</td>
+                                                {% if key = 0 %}
+                                                    <td rowspan="{{ orderCuahang.product|length }}">{{ orderCuahang.Total }}</td>
+                                                {% endif %}
+                                                </tr>
                                             {% endfor %}
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
