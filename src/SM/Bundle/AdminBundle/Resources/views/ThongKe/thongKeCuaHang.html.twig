@@ -62,7 +62,7 @@
                                         {% for orderCuahang in listOrderCuaHang %}
                                         <tr>
                                             <td rowspan="{{ orderCuahang.product|length }}">{{ orderCuahang.stt }}</td>
-                                            {% for oneProduct in orderCuahang.product %}
+                                            {% for key, oneProduct in orderCuahang.product %}
                                             {% endfor %}
                                             <td>Mark</td>
                                             <td>Otto</td>
