@@ -34,7 +34,7 @@
                                 <tbody>
                                     {% set num = numberRecord * (page - 1) %}
                                     {% for entity in entities %}
-                                        <tr {% if num != 1 %}
+                                        <tr {% if num % 2 != 0 %}
                                             style="color: #A7A7A7;"
                                             {% endif %}
                                                 >
