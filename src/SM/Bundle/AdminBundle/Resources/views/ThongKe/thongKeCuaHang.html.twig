@@ -71,7 +71,7 @@
                                                 <td>{{ oneProduct.name }}</td>
                                                 <td>{{ oneProduct.soLuong }}</td>
                                                 <td>{{ oneProduct.price }}</td>
-                                                {% if key = 0 %}
+                                                {% if key == 0 %}
                                                     <td rowspan="{{ orderCuahang.product|length }}">{{ orderCuahang.Total }}</td>
                                                 {% endif %}
                                                 </tr>
