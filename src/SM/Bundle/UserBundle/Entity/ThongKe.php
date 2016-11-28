@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * ThongKe
  *
- * @ORM\Table(name="thongke", indexes={@ORM\Index(name="Id_Cua_Hang", columns={"Id_Cua_Hang"})})
+ * @ORM\Table(name="ThongKe", indexes={@ORM\Index(name="Id_Cua_Hang", columns={"Id_Cua_Hang"})})
  * @ORM\Entity(repositoryClass="SM\Bundle\UserBundle\Repository\ThongKeRepository")
  */
 class ThongKe
