@@ -198,7 +198,7 @@ of 2:
     use Doctrine\Common\DataFixtures\AbstractFixture;
     use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
     use Doctrine\Common\Persistence\ObjectManager;
-    use AppBundle\Entity\Group;
+    use ApBundle\Entity\Group;
 
     class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
     {
