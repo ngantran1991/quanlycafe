@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * User
  *
- * @ORM\Table(name="User")
+ * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="SM\Bundle\UserBundle\Repository\UserRepository")
  */
 class User implements UserInterface

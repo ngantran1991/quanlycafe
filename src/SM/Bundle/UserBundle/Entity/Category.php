@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Category
  *
- * @ORM\Table(name="Category")
+ * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="SM\Bundle\UserBundle\Repository\CategoryRepository")
  */
 class Category
